@@ -1,0 +1,5 @@
+
+config ASUS_PRIMEB550PLUS_HWMON
+	tristate "Asus Prime B550-plus hwmon support"
+	depends on DMI && ACPI && HWMON
+

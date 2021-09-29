@@ -1,0 +1,46 @@
+=== What is it?
+It's a Linux hwmon driver for Asus Prime B550-plus motherboard. And it's
+a bad driver.
+Status: works for me, use at your own risks.
+Homepage: https://github.com/etbuira/asus_hwmon
+License: GPL-2
+
+=== How to try it?
+There are basically two options:
+  - build in-tree:
+    - drop the checked out tree in your kernel source tree
+      (drivers/hwmon looks a good land-place)
+    - append 'source "<checked out dirname>"' to parent's dir Kconfig
+      file
+    - do your config/build as you used to
+  - build out-of-tree:
+    - read the fine manual (Documentation/kbuild/modules.rst at time of
+      writing), you will probably need some -dev package if using your
+      distro's stock kernel.
+
+=== Why is it a bad driver?
+Because Asus considers those boards as still belonging to them, even
+after you payed for it.
+To be more concrete:
+  - it's made out of chip documentation of a related model, but not the
+    one found on the board (Nuvoton said the installed chip
+    documentation in only distributed to manufacturers).
+  - it uses ACPI 'private method' to read values, because it looked the
+    less bad option, considering chip access serialisation and
+    maintenance. Asus refused to document how to do hardware monitoring,
+    arguing it's confidential information...
+  - last but maybe not least, it's wrote by a Linux device driver n00b.
+Practical consequences:
+  - there is no atomic read of more than a byte, so expect some
+    transient weird values sometimes.
+  - i didn't dare to write to chip, so use BIOS to configure it (fan
+    settings for instance).
+
+=== Is the initial author related to Asus?
+As a customer only, but a looking-for-better-motherboard-manufacturer
+customer now.
+
+=== Should I buy this board?
+If you intend to use hardware monitoring features, probably not (even if
+using a 'supported' OS, as their WMI implementation looks very broken).
+
