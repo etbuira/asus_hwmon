@@ -37,6 +37,14 @@ static const struct dmi_system_id asus_accepted_dmis[] = {
 			DMI_EXACT_MATCH(DMI_BIOS_VERSION, "2423"),
 		}
 	},
+	{
+		.ident = "Prime B550-Plus bios 3205",
+		.matches = {
+			DMI_EXACT_MATCH(DMI_BOARD_VENDOR, "ASUSTeK COMPUTER INC."),
+			DMI_EXACT_MATCH(DMI_BOARD_NAME, "PRIME B550-PLUS"),
+			DMI_EXACT_MATCH(DMI_BIOS_VERSION, "3205"),
+		},
+	},
 	{ .matches = { { .slot = DMI_NONE } } }
 };
 
